@@ -3,6 +3,7 @@ package com.pankaj.ebookshop.model
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import java.util.concurrent.Executors
 
 public class EbookShopRepository(application: Application) {
     private lateinit var categoryDAO: CategoryDAO
@@ -25,7 +26,13 @@ public class EbookShopRepository(application: Application) {
     }
 
     public fun insertCategory(category: Category){
-        InsertCategoryAsyncTAsk(categoryDAO).execute(category)
+       // InsertCategoryAsyncTAsk(categoryDAO).execute(category)
+
+        val executor = Executors.newSingleThreadExecutor();
+        executor.execute(Runnable {
+            categoryDAO.addCategory(category)
+        })
+
     }
 
     private class InsertCategoryAsyncTAsk(categoryDAO: CategoryDAO): AsyncTask<Category, Void, Void>() {
@@ -42,7 +49,11 @@ public class EbookShopRepository(application: Application) {
     }
 
     public fun insertBook(book: Book){
-        InsertBookAsyncTAsk(bookDAO).execute(book)
+        //InsertBookAsyncTAsk(bookDAO).execute(book)
+        val executor = Executors.newSingleThreadExecutor();
+        executor.execute(Runnable {
+            bookDAO.addBook(book)
+        })
     }
 
     private class InsertBookAsyncTAsk(bookDAO: BookDAO): AsyncTask<Book, Void, Void>() {
@@ -59,7 +70,11 @@ public class EbookShopRepository(application: Application) {
     }
 
     public fun deleteCategory(category: Category){
-        deleteCategoryAsyncTAsk(categoryDAO).execute(category)
+      //  deleteCategoryAsyncTAsk(categoryDAO).execute(category)
+        val executor = Executors.newSingleThreadExecutor();
+        executor.execute(Runnable {
+            categoryDAO.deleteCategory(category)
+        })
     }
 
     private class deleteCategoryAsyncTAsk(categoryDAO: CategoryDAO): AsyncTask<Category, Void, Void>() {
@@ -76,7 +91,11 @@ public class EbookShopRepository(application: Application) {
     }
 
     public fun deleteBook(book: Book){
-        deleteBookAsyncTAsk(bookDAO).execute(book)
+     //   deleteBookAsyncTAsk(bookDAO).execute(book)
+        val executor = Executors.newSingleThreadExecutor();
+        executor.execute(Runnable {
+            bookDAO.deleteBook(book)
+        })
     }
 
     private class deleteBookAsyncTAsk(bookDAO: BookDAO): AsyncTask<Book, Void, Void>() {
@@ -93,7 +112,11 @@ public class EbookShopRepository(application: Application) {
     }
 
     public fun updateCategory(category: Category){
-        updateCategoryAsyncTAsk(categoryDAO).execute(category)
+        //updateCategoryAsyncTAsk(categoryDAO).execute(category)
+        val executor = Executors.newSingleThreadExecutor();
+        executor.execute(Runnable {
+            categoryDAO.updateCategory(category)
+        })
     }
 
     private class updateCategoryAsyncTAsk(categoryDAO: CategoryDAO): AsyncTask<Category, Void, Void>() {
@@ -110,7 +133,11 @@ public class EbookShopRepository(application: Application) {
     }
 
     public fun updateBook(book: Book){
-        updateBookAsyncTAsk(bookDAO).execute(book)
+       // updateBookAsyncTAsk(bookDAO).execute(book)
+        val executor = Executors.newSingleThreadExecutor();
+        executor.execute(Runnable {
+            bookDAO.updateBook(book)
+        })
     }
 
     private class updateBookAsyncTAsk(bookDAO: BookDAO): AsyncTask<Book, Void, Void>() {
