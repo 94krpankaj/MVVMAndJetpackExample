@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             val message =
                 " id is " + selectedCategory!!.id + "\n name is " + selectedCategory!!.categoryName + "\n email is " + selectedCategory!!.categoryDescription
             // Showing selected spinner item
-            Toast.makeText(parent.context, message, Toast.LENGTH_LONG).show()
+      //      Toast.makeText(parent.context, message, Toast.LENGTH_LONG).show()
 
             loadBooksArrayList(selectedCategory!!.id!!)
         }

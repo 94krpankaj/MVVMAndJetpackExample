@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import java.util.concurrent.Executors
 
 public class EbookShopRepository(application: Application) {
+
     private lateinit var categoryDAO: CategoryDAO
     private lateinit var bookDAO: BookDAO
     private lateinit var categories:LiveData<List<Category>>
